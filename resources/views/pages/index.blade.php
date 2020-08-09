@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title', 'المدخلات اليوميه')
 @section('content')
     <div class="container" style="direction: rtl; text-align: right">
         @if(Session::has('success'))

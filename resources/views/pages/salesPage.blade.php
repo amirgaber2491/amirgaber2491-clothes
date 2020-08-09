@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-
+@section('title', 'المبيعات')
 
 @section('content')
     <div class="container" style="text-align: right">
@@ -34,13 +34,12 @@
                 <hr>
             @empty
                 <div class="alert alert-danger">
-لا يوجد بيانات فى هذه المده
+                    لا يوجد بيانات حاليا
                 </div>
             @endforelse
-
         @else
             <div class="alert alert-danger">
-                لا يوجد بيانات
+            لا يوجد بيانات حاليا
             </div>
         @endif
     </div>

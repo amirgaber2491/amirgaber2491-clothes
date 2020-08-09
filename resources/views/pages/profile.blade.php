@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-
+@section('title', 'الشخصيه')
 @section('content')
 
     <div class="container" style="text-align: right">
@@ -10,7 +10,7 @@
             </div>
         @endif
         <div>
-            <h1 style="text-align: center">تعديل بيانات المستخدم : {{ Auth::user()->name }}</h1>
+            <h1 style="text-align: center">تعديل بيانات المستخدم : {{ Str::title(Auth::user()->name) }}</h1>
             <div>
                 {!! Form::model($user, ['method'=>'POST', 'action'=>'ClothesController@userUpdateData']) !!}
                 <div class="form-group">
@@ -36,9 +36,9 @@
             <div>
                 <h1 style="text-align: center">تغير كلمه المرور</h1>
                 {!! Form::open(['method'=>'POST', 'action'=>'ClothesController@changeUserPassword']) !!}
-                {!! Form::open(['method'=>'POST', 'action'=>['AdminController@changeAdminPassword', $user->id]]) !!}
                 <div class="form-group">
-                    <input type="password" class="form-control" id="current-password" name="current-password" placeholder="current-password">
+                    <label for="current-password">كلمه المرور القديمه : </label>
+                    <input type="password" class="form-control" id="current-password" name="current-password" placeholder="ادخل كلممه المرور القديمه">
                 </div>
                 @if(Session::has('message'))
                     <div class="alert alert-danger">
@@ -46,7 +46,8 @@
                     </div>
                 @endif
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="new Password">
+                    <label for="password">كلمه المرور الجديده : </label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="ادخل كلمه المرور الجديده">
                 </div>
                 @error('password')
                 <div class="alert alert-danger">
@@ -54,7 +55,8 @@
                 </div>
                 @enderror
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Re-enter Password">
+                    <label for="password_confirmation">تكرار كلمه المرور الجديده : </label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="كرر كلمه المرور الجديده">
                 </div>
                 <div class="form-group">
                     {!! Form::submit('تغير كلمه المرور', ['class'=>'btn btn-primary']) !!}

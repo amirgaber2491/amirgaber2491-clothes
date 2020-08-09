@@ -17,17 +17,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('test', function (){
-//    return view('test');
-//    return now()->addDay()->shortAbsoluteDiffForHumans();
-    $from = date('2020-07-28');
-    $to = date('2020-08-11');
-//    $to = now()->addDay()->format('Y-m-d');
-    return Sale::sum('total_sales');
-});
-Route::post('test', function (Request $request){
-    return $request->all();
-})->name('test');
+
+
 Auth::routes();
 
 Route::group(['middleware'=>'auth'], function (){
@@ -41,8 +32,7 @@ Route::group(['middleware'=>'auth'], function (){
 
     // Start Admin Routes
     Route::group(['middleware'=>'admin', 'prefix'=>'admin'], function (){
-        Route::get('/', 'AdminController@index')->name('admin.index');
-        Route::get('/users', 'AdminController@users')->name('admin.users');
+        Route::get('/', 'AdminController@users')->name('admin.users');
 
         Route::get('/user/create', 'AdminController@createUser')->name('admin.user.create');
         Route::post('/user/store', 'AdminController@store')->name('admin.user.store');

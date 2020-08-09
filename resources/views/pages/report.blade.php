@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title', 'التقارير')
 @section('header')
 
     <link rel="stylesheet" href="{{ asset('css/datatables/jquery.dataTables.min.css') }}">

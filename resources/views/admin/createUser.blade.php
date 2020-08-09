@@ -1,4 +1,5 @@
 @extends('admin.layouts.master')
+@section('title', 'اضافه عضو جديد')
 @section('content')
 
     <div class="container" style="text-align: right">

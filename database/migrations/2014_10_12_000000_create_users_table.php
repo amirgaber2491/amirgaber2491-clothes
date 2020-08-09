@@ -29,12 +29,14 @@ class CreateUsersTable extends Migration
         User::create([
             'name'=>'tarek gaber',
             'username'=>'tarek.gaber',
-            'password'=> Hash::make('1')
+            'password'=> Hash::make('1'),
+            'role'=>1
         ]);
         User::create([
             'name'=>'amir gaber',
             'username'=>'amir.gaber',
-            'password'=> Hash::make('1')
+            'password'=> Hash::make('1'),
+            'role'=>1
         ]);
     }
 

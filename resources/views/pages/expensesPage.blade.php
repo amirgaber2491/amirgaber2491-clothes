@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-
+@section('title', 'المصروفات')
 
 @section('content')
     <div class="container" style="text-align: right">
@@ -25,7 +25,7 @@
         </div>
 
         @if(isset($expenses))
-            @foreach($expenses as $expense)
+            @forelse($expenses as $expense)
                 <div>
                     <p>اسم المستخدم : {{ $expense->user->name }}</p>
                     <p>تاريخ المصروفات : {{ $expense->created_at->format('Y-m-d') }}</p>
@@ -40,11 +40,14 @@
                     </p>
                 </div>
                 <hr>
-
-            @endforeach
+            @empty
+                <div class="alert alert-danger">
+                    لا يوجد بيانات حاليا
+                </div>
+            @endforelse
         @else
             <div class="alert alert-danger">
-                لا يوجد بيانات
+لا يوجد بيانات حاليا
             </div>
         @endif
     </div>

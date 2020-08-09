@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-
+@section('title', 'المشتريات')
 
 @section('content')
     <div class="container" style="text-align: right">
@@ -24,7 +24,7 @@
             </form>
         </div>
         @if(isset($purchases))
-            @foreach($purchases as $purchase)
+            @forelse($purchases as $purchase)
                 <div>
                     <p>اسم المستخدم : {{ $purchase->user->name }}</p>
                     <p>تاريخ الشراء : {{ $purchase->created_at->format('Y-m-d') }}</p>
@@ -39,11 +39,14 @@
                     </p>
                 </div>
                 <hr>
-
-            @endforeach
+            @empty
+                <div class="alert alert-danger">
+                    لا يوجد بيانات حاليا
+                </div>
+            @endforelse
         @else
             <div class="alert alert-danger">
-                لا يوجد بيانات
+                لا يوجد بيانات حاليا
             </div>
         @endif
     </div>
