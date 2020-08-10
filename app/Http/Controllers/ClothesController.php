@@ -249,22 +249,21 @@ class ClothesController extends Controller
     {
         if ($request->date_to == '' || !$request->has('date_to') || $request->date_to > now()->format('Y-m-d')){
             $date_to = now()->format('Y-m-d');
+        }elseif ($request->date_to !== '' || $request->has('date_to')){
+            $date_to = $request->input('date_to');
+
         }
-//        if ($request->date_to !== '' || $request->has('date_to'))
-//        {
-//            $date_to = $request->input('date_to');
-//        }
-//        if ($request->has('date_from') && $request->input('date_from') !== ''){
-//            $date_from = $request->input('date_from');
-//            $sum_purchases = Purchase::whereBetween('created_at', [$date_from, Carbon::createFromFormat('Y-m-d', $date_to)->addDay()])->sum('total_purchases');
-//            $sum_sales = Sale::whereBetween('created_at', [$date_from, Carbon::createFromFormat('Y-m-d', $date_to)->addDay()])->sum('total_sales');
-//            $sum_expenses = Expense::whereBetween('created_at', [$date_from, Carbon::createFromFormat('Y-m-d', $date_to)->addDay()])->sum('total_expenses');
-//        }else{
-//            $sum_purchases = Purchase::sum('total_purchases');
-//            $sum_sales = Sale::sum('total_sales');
-//            $sum_expenses = Expense::sum('total_expenses');
-//        }
-        return view('pages.report');
+        if ($request->has('date_from') && $request->input('date_from') !== ''){
+            $date_from = $request->input('date_from');
+            $sum_purchases = Purchase::whereBetween('created_at', [$date_from, Carbon::createFromFormat('Y-m-d', $date_to)->addDay()])->sum('total_purchases');
+            $sum_sales = Sale::whereBetween('created_at', [$date_from, Carbon::createFromFormat('Y-m-d', $date_to)->addDay()])->sum('total_sales');
+            $sum_expenses = Expense::whereBetween('created_at', [$date_from, Carbon::createFromFormat('Y-m-d', $date_to)->addDay()])->sum('total_expenses');
+        }else{
+            $sum_purchases = Purchase::sum('total_purchases');
+            $sum_sales = Sale::sum('total_sales');
+            $sum_expenses = Expense::sum('total_expenses');
+        }
+        return view('pages.report', compact('sum_purchases', 'sum_expenses', 'sum_sales'));
     }
     public function purchasesData(Request $request)
     {

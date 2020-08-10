@@ -2,6 +2,7 @@
 
 
 use App\Expense;
+use App\Purchase;
 use App\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('test', function (){
+    return Purchase::sum('total_purchases');
+});
 
 Auth::routes();
 

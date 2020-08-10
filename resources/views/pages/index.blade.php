@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">الفواتير</label>
-                    <input type="file" class="form-control" name="images[]" multiple accept="image/*">
+                    <input type="file" class="form-control" name="images[]" multiple accept="image/*" id="fUpload">
                     @error('images')
                     <div class="alert alert-danger">
                         {{ $message }}
@@ -99,7 +99,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">الفواتير</label>
-                    <input type="file" class="form-control" name="images[]" multiple>
+                    <input type="file" class="form-control" name="images[]" multiple accept="image/*" id="fUpload2">
                 </div>
                 @if(Session::has('error_expenses'))
                     <div class="alert alert-danger">
@@ -113,5 +113,44 @@
         </div>
     </div>
 
+
+@stop
+@section('footer')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#fUpload').change(function(){
+                var fp = $("#fUpload");
+                var lg = fp[0].files.length; // get length
+                var items = fp[0].files;
+                var fileSize = 0;
+
+                if (lg > 0) {
+                    for (var i = 0; i < lg; i++) {
+                        fileSize = fileSize+items[i].size; // get file size
+                    }
+                    if(fileSize > 2097152) {
+                        alert('يجب الا تتعدى حجم الصور 2 ميجا');
+                        $('#fUpload').val('');
+                    }
+                }
+            });
+            $('#fUpload2').change(function(){
+                var fp = $("#fUpload2");
+                var lg = fp[0].files.length; // get length
+                var items = fp[0].files;
+                var fileSize = 0;
+
+                if (lg > 0) {
+                    for (var i = 0; i < lg; i++) {
+                        fileSize = fileSize+items[i].size; // get file size
+                    }
+                    if(fileSize > 2097152) {
+                        alert('يجب الا تتعدى حجم الصور 2 ميجا');
+                        $('#fUpload2').val('');
+                    }
+                }
+            });
+        });
+    </script>
 
 @stop

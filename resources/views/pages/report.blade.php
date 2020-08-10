@@ -10,15 +10,14 @@
 @section('content')
 
     <div class="container" style="text-align: right">
-
         <div>
-{{--            اجمالى المشتريات : {{ $sum_purchases }}--}}
+            اجمالى المشتريات : {{ $sum_purchases }}
         </div>
         <div>
-{{--            اجمالى المبيعات : {{ $sum_sales }}--}}
+            اجمالى المبيعات : {{ $sum_sales }}
         </div>
         <div>
-{{--            اجمالى المصروفات : {{ $sum_expenses }}--}}
+            اجمالى المصروفات : {{ $sum_expenses }}
         </div>
         <hr>
         <div>
